@@ -1,0 +1,147 @@
+<app-navebar></app-navebar>
+<div id="calendar-container" >
+    <div id="cal-buttons" class="w-full flex justify-center mt-4 ">
+        <div id="cal-date-nav-buttons" class="">
+            <button id="previous" mwlCalendarPreviousView [(viewDate)]="viewDate" [view]="view" [excludeDays]="[0,6]"
+                class="mr-2 bg-blue-500 text-white px-4 py-2 rounded">Précédent</button>
+            <button id="today" mwlCalendarToday [(viewDate)]="viewDate"
+                class="mr-2 bg-blue-500 text-white px-4 py-2 rounded">Aujourd'hui</button>
+            <button id="next" mwlCalendarNextView [(viewDate)]="viewDate" [view]="view" [excludeDays]="[0,6]"
+                class="mr-2 bg-blue-500 text-white px-4 py-2 rounded">Prochain</button>
+        </div>
+        <div id="cal-data-field" class="text-2xl font-bold text-center mb-4">{{viewDate |
+            calendarDate:(view+'ViewTitle'):'fr'}}</div>
+        <div id="cal-view-nav-button" class="">
+            <button id="month" (click)="theView(CalendarView.Month)"
+                class="mr-2 bg-blue-500 text-white px-4 py-2 rounded">Mois</button>
+            <button id="week" (click)="theView(CalendarView.Week)"
+                class="mr-2 bg-blue-500 text-white px-4 py-2 rounded">Semaine</button>
+            <button id="day" (click)="theView(CalendarView.Day)"
+                class="mr-2 bg-blue-500 text-white px-4 py-2 rounded">Jour</button>
+        </div>
+    </div>
+    <span [ngSwitch]="view">
+        <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [events]="events"
+            [excludeDays]="[0,6]" [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)" (eventClicked)="eventClicked($event)" (eventTimesChanged)="eventTimeChanged($event)" [refresh]="refresh"
+            locale="fr"></mwl-calendar-month-view>
+        <mwl-calendar-week-view *ngSwitchCase="CalendarView.Week" [viewDate]="viewDate" [events]="events"
+            [excludeDays]="[0,6]" [dayStartHour]="8" [dayEndHour]="20" (eventClicked)="eventClicked($event)" (eventTimesChanged)="eventTimeChanged($event)" [refresh]="refresh" locale="fr"></mwl-calendar-week-view>
+        <mwl-calendar-day-view *ngSwitchCase="CalendarView.Day" [dayStartHour]="8" [dayEndHour]="20"
+            [viewDate]="viewDate" [events]="events" (eventClicked)="eventClicked($event)" (eventTimesChanged)="eventTimeChanged($event)" [refresh]="refresh" locale="fr"></mwl-calendar-day-view>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="flex justify-center">
+    <button
+        class=" block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        type="button" data-modal-toggle="authentication-modal">
+        Ajout Session
+    </button>
+    <div id="authentication-modal" aria-hidden="true"
+        class="hidden overflow-x-hidden overflow-y-auto fixed h-modal md:h-full top-4 left-0 right-0 md:inset-0 z-50 justify-center items-center">
+        <div class="flex justify-center relative w-full h-full md:h-auto ">
+            Modal content
+            <div
+                class="w-[45%] bg-white rounded-lg shadow relative dark:bg-gray-700 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-sky-400 to-blue-500">
+                <div class="flex justify-end p-2">
+                    <button type="button"
+                        class="text-gray-700 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
+                        data-modal-toggle="authentication-modal">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                </div>
+                <form class="space-y-6 px-6 lg:px-8 pb-4 sm:pb-6 xl:pb-8" [formGroup]="myFormSession">
+                    <h3 class="text-3xl font-bold text-gray-900 dark:text-white">Ajout Session</h3>
+                    <div class="text-center">
+                        <p class="text-2xl">Prof: Mr Diop SOuley</p>
+                        <p class="text-2xl">Module: JS</p>
+                        <p class="text-2xl">Classe: Licence1</p>
+                    </div>
+                    <div class="flex justify-around w-full gap-3">
+                        <div class="w-full">
+                            <label for=""
+                                class="text-2xl font-medium text-gray-900 block mb-2 dark:text-gray-300 ">Heure
+                                Début</label>
+                            <input type="" formControlName="hDebut"
+                                class=" px-3 bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                placeholder="Entrer l'heure de début" required="">
+                        </div>
+                        <div class="w-full">
+                            <label for="" class="text-2xl font-medium text-gray-900 block mb-2 dark:text-gray-300">Heure
+                                Fin</label>
+                            <input type="" formControlName="hFin"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                placeholder="Entrer l'heure de fin" required="">
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-full" *ngIf="salleSelectionnee">
+                            <label for=""
+                                class="text-2xl font-medium text-gray-900 block mb-2 dark:text-gray-300">Salle</label>
+                            <select type="date" name="" (click)="getSalle()" formControlName="salle_id" 
+                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" >
+                                <option value="">Choisir une salle</option>
+                                <option *ngFor="let salle of salles" [value]="salle.id">{{salle.nom}}</option>
+                            </select>
+                        </div>
+                        <div class="w-full">
+                            <label for=""
+                                class=   "text-2xl font-medium text-gray-900 block mb-2 dark:text-gray-300">Statut
+                                salle</label>
+                            <select type="date" name="" formControlName="statutSalle" 
+                            (change)="selectSalle()"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
+                                <option value="" disabled>Choisir un statut</option>
+                                <option >En ligne</option>
+                                <option >Presentiel</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="flex justify-around w-full gap-3">
+                        <div class="w-full">
+                            <label for=""
+                                class="text-2xl font-medium text-gray-900 block mb-2 dark:text-gray-300 ">Durée</label>
+                            <input type="text" formControlName="Duree"
+                                class=" px-3 bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                placeholder="Durée" required="">
+                        </div>
+                        <div class="w-full">
+                            <label for=""
+                                class="text-2xl font-medium text-gray-900 block mb-2 dark:text-gray-300">Date</label>
+                            <input type="date" formControlName="date"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                placeholder="Entrer la date">
+                        </div>
+                    </div>
+                    <div class="flex justify-end gap-2">
+                        <button type="button"
+                            class=" text-white bg-red-600 font-bold rounded-lg text-sm  px-3 py-25 text-center">
+                            Annuler</button>
+                        <button type="button"
+                            class="  text-white bg-green-400 font-bold rounded-lg text-sm px-3 py-2 text-center"
+                            (click)="addSession()">
+                            Ajouter</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> -->

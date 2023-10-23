@@ -9,9 +9,10 @@ class Module extends Model
 {
     use HasFactory;
 
-    public function profs()  {
-        return $this->belongsToMany(User::class,'module_profs','module_id','prof_id');
+    public function user()  {
+        return $this->belongsToMany(User::class,'module_profs');
     }
+
     protected $hidden=[
         "created_at",
         "updated_at"

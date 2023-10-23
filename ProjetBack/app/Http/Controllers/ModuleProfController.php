@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ModuleProfResource;
+use App\Models\Cours;
 use App\Models\ModuleProf;
 use Illuminate\Http\Request;
 
@@ -12,8 +14,14 @@ class ModuleProfController extends Controller
      */
     public function index()
     {
-        //
+       return ModuleProfResource::make(ModuleProf::all());
     }
+      public function getProfByModule($idProf){
+
+        $prof= ModuleProf::where('prof_id',$idProf)->get()->pluck('id');
+
+        // $cours=Cours::whereIn('module_i')
+      }
 
     /**
      * Show the form for creating a new resource.
@@ -22,6 +30,7 @@ class ModuleProfController extends Controller
     {
         //
     }
+
 
     /**
      * Store a newly created resource in storage.

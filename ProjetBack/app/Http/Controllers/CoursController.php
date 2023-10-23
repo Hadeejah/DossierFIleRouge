@@ -25,17 +25,28 @@ class CoursController extends Controller
         //
     }
 
+
+
+    public static function convertirSeconde($heure)
+    {
+        $heureGlob = $heure * 3600;
+        return $heureGlob;
+    }
+
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
+
         $cours = Cours::create([
-            "nbre_heure" => $request->nbre_heure,
-            "prof_id" => $request->prof_id,
-            "module_id" => $request->module,
+            "nbre_heure" => $this->convertirSeconde($request->nbre_heure),
+            // "prof_id" => $request->prof_id,
+            // "module_id" => $request->module,
             "classe_id" => $request->classe_id,
+            "module_prof_id"=>$request->module_prof_id ,
         ]);
+
         return response()->json([
             "success" => "true",
             "data" => CoursResource::make($cours),

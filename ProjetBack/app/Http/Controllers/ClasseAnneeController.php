@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DemandeAnnulation;
+use App\Models\ClasseAnnee;
 use Illuminate\Http\Request;
 
-class DemandeAnnulationController extends Controller
+class ClasseAnneeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class DemandeAnnulationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(DemandeAnnulation $demandeAnnulation)
+    public function show(ClasseAnnee $classeAnnee)
     {
         //
     }
@@ -42,7 +42,7 @@ class DemandeAnnulationController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(DemandeAnnulation $demandeAnnulation)
+    public function edit(ClasseAnnee $classeAnnee)
     {
         //
     }
@@ -50,7 +50,7 @@ class DemandeAnnulationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, DemandeAnnulation $demandeAnnulation)
+    public function update(Request $request, ClasseAnnee $classeAnnee)
     {
         //
     }
@@ -58,7 +58,7 @@ class DemandeAnnulationController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(DemandeAnnulation $demandeAnnulation)
+    public function destroy(ClasseAnnee $classeAnnee)
     {
         //
     }

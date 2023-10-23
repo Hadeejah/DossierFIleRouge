@@ -27,5 +27,13 @@ export class ResPedaService {
   getCours(){
     return this.http.get(this.url+`cours`)
   }
+
+  chargeSalle() {
+    return this.http.get(this.url + `salle`)
+  }
+  addSession(data: any) {
+    return this.http.post(this.url + `session`, data)
+  }
+
 }
 

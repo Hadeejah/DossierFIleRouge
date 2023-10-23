@@ -12,4 +12,8 @@ class AnneeScolaire extends Model
         "created_at",
         "updated_at"
     ];
+    public function classes()
+    {
+        return $this->belongsToMany(Classe::class);
+    }
 }

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->foreignIdFor(Classe::class)->constrained();
             $table->foreignIdFor(Module::class)->constrained();
             $table->integer('nbre_heure');
-            $table->boolean('etatCours')->default('1');
+            $table->enum('etatCours',['Termine','en_cours'])->default('en_cours');
             $table->timestamps();
         });
     }

@@ -30,6 +30,8 @@ class AuthController extends Controller
             "password" => $request->password,
         ]);
 
+        // $user->attach()
+
         return response()->json([
             "success" => "true",
             "data" => $user,
@@ -47,24 +49,29 @@ class AuthController extends Controller
             return response()->json([
                 "success" => "true",
                 "message" => "Invalid credentials"
+
             ]);
         }
         $user = Auth::user();
         $token = $user->createToken("token")->plainTextToken;
 
+        $tok=cookie('myToken',$token);
+        
         return response([
             "token" => $token,
-            "user" => $user
-        ]);
+            "name" => $user->name,
+            "role" => $user->role,
+            "email" => $user->email
+           
+        ])->withCookie($tok);
     }
 
     public function logout(Request $request)
     {
         
-        $tokenDel = Auth::guard('sanctum')->user()->tokens()->delete();
+        $tokenDel = Auth::user()->tokens()->delete();
         return response([
-            "message" => "success",
-            "data" => $tokenDel,
+            "message" => "Deconnexion réussie",
         ]);
     }
 

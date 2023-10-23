@@ -1,0 +1,139 @@
+<app-navebar></app-navebar>
+<div  class="px-10">
+    <h1 class="text-4xl font-bold p-10">Liste des Demandes</h1>
+    <table class="min-w-full bg-white border border-gray-300 ">
+        <thead>
+            <tr>
+                <th class="py-3 px-6 border-b text-center text-black text-2xl font-mono font-bold">
+                    Professeur
+                </th>
+                <th class="py-3 px-6 border-b text-center text-black text-2xl font-mono font-bold">
+                    Cours
+                </th>
+                <th class="py-3 px-6 border-b text-center text-black text-2xl font-mono font-bold">
+                    Salle
+                </th>
+                <th class="py-3 px-6 border-b text-center text-black text-2xl font-mono font-bold">
+                    Heure du cours
+                </th>
+                <th class="py-3 px-6 border-b text-center text-black text-2xl font-mono font-bold">
+                    Date du Session
+                </th>
+                <th class="py-3 px-6 border-b text-center text-black text-2xl font-mono font-bold">
+                    MotifDemande
+                </th>
+                <th class="py-3 px-6 border-b text-center text-black text-2xl font-mono font-bold">
+                    etatDemande
+                </th>
+                <th class="py-3 px-6 border-b text-center text-black text-2xl font-mono font-bold">
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let demande of demandes">
+                <td class="py-2 px-6 border-b text-center text-xl">{{demande.session_de_cours_id.cours_id.prof_id}}</td>
+                <td class="py-2 px-6 border-b text-center text-xl">{{demande.session_de_cours_id.cours_id.module_id.libelle}}</td>
+                <td class="py-2 px-6 border-b text-center text-xl">{{demande.session_de_cours_id.salle_id.nom}} </td>
+                <td class="py-2 px-6 border-b text-center text-xl">{{demande.session_de_cours_id.hDebut}} - {{demande.session_de_cours_id.hFin}}</td>
+                <td class="py-2 px-6 border-b text-center text-xl">{{demande.session_de_cours_id.date}}</td>
+                <td class="py-2 px-6 border-b text-center text-xl">{{demande.motifDemande}}</td>
+                <td class="py-2 px-6 border-b text-center text-xl">{{demande.etatDemande}}</td>
+                <td class="py-2 px-6 border-b text-center text-xl">
+                    <div class="text-lg flex justify-center ">
+                        <button type="button"
+                            class="mr-3 text-sm bg-green-500 hover:bg-green-700 text-white py- px-2 rounded focus:outline-none focus:shadow-outline">Accepter</button>
+                        <button type="button"
+                            class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Refuser</button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- <div>
+    <section class="antialiased bg-gray-100 text-gray-600 h-[50em]  px-4">
+        <div class="flex flex-col justify-center h-[20em]">
+            <div class="mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
+                <header class="px-5 py-4 border-b border-gray-100">
+                    <h1 class="font-bold  text-gray-800 text-4xl">Liste des demandes</h1>
+                </header>
+                <div class="p-3 ">
+                    <div class="overflow-x-auto ">
+                        <table class="table-auto w-full">
+                            <thead class="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
+                                <tr>
+                                    <th class="p-2 whitespace-nowrap justify-center">
+                                        <div class="text-center text-xl">Professeur</div>
+                                    </th>
+                                    <th class="p-2 whitespace-nowrap">
+                                        <div class="text-center text-xl">Cours</div>
+                                    </th>
+                                    <th class="p-2 whitespace-nowrap">
+                                        <div class="text-center text-xl">Salle</div>
+                                    </th>
+                                    <th class="p-2 whitespace-nowrap">
+                                        <div class="text-center text-xl">Heure du cours</div>
+                                    </th>
+                                    <th class="p-2 whitespace-nowrap">
+                                        <div class="text-center text-xl">Date du Session</div>
+                                    </th>
+                                    <th class="p-2 whitespace-nowrap">
+                                        <div class="text-center text-xl">MotifDemande</div>
+                                    </th>
+                                    <th class="p-2 whitespace-nowrap">
+                                        <div class="text-left text-xl">etatDemande</div>
+                                    </th>
+                                    <th class="p-2 whitespace-nowrap">
+                                        <div class=" text-center text-xl">Action</div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-sm divide-y divide-gray-100">
+                                <tr *ngFor="let demande of demandes" >
+                                    <td class="p-3 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div class="font-medium  text-gray-800 text-lg">
+                                                {{demande.session_de_cours_id.cours_id.prof_id}}</div>
+                                        </div>
+                                    </td>
+                                    <td class="p-3 whitespace-nowrap">
+                                        <div class="text-center text-lg ">
+                                            {{demande.session_de_cours_id.cours_id.module_id.libelle}}</div>
+                                    </td>
+                                    <td class="p-3 whitespace-nowrap">
+                                        <div class="text-center font-medium text-xl">
+                                            {{demande.session_de_cours_id.salle_id.nom}}</div>
+                                    </td>
+                                    <td class="p-3 whitespace-nowrap">
+                                        <div class=" text-center text-xl">{{demande.session_de_cours_id.hDebut}} -
+                                            {{demande.session_de_cours_id.hFin}}</div>
+                                    </td>
+                                    <td class="p-3 whitespace-nowrap">
+                                        <div class=" text-center text-xl">{{demande.session_de_cours_id.date}}</div>
+                                    </td>
+                                    <td class="p-2 whitespace-nowrap">
+                                        <div class=" text-center text-xl">{{demande.motifDemande}}</div>
+                                    </td>
+                                    <td class="p-3 whitespace-nowrap">
+                                        <div class=" text-xl">{{demande.etatDemande}}</div>
+                                    </td>
+                                    <td class="">
+                                        <div class="text-lg flex justify-center ">
+                                            <button type="button"
+                                                class="mr-3 text-sm bg-green-500 hover:bg-green-700 text-white py- px-2 rounded focus:outline-none focus:shadow-outline">Accepter</button>
+                                            <button type="button"
+                                                class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Refuser</button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div> -->
